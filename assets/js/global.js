@@ -27,9 +27,9 @@ function welcomeMsg() {
     let arrayEl = [
         `<p class="animation mb-0 text-truncate">Follow ig frederich_eugene</p>`,
         `<p class="animation mb-0 text-truncate">IG: ${takapediaIG} / WA: ${takapediaWA}</p>`,
-        `<p class="animation mb-0 text-truncate">MPL S9 kalian dukung siapa ges? kalo gw sih ONIC`,
-        `<p class="animation mb-0 text-truncate">mabar banh bantu gw glory</p>`,
-        `<p class="animation mb-0 text-truncate">follow ml gw ya 103422199 nick Michio.</p>`
+        `<p class="animation mb-0 text-truncate">MPL S12 kalian dukung siapa ges? kalo aku sih dukun ONIC ESPORT`,
+        `<p class="animation mb-0 text-truncate">Mabar yuk bang glory</p>`,
+        `<p class="animation mb-0 text-truncate">follow ml : 103422199 / Nickname Ml : Michio.</p>`
     ];
     setInterval(() => {
         welcomeMsgEl.innerHTML = arrayEl[array];

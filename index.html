@@ -1,104 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Penghitung WR ML</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
-        <meta name="google-site-verification" content="NVV4eHDceAFUvhsMidliY7XvOWUl2ba6YZzTedNtdBY" />
-        <meta name="title" content="Hitung WR -- Penghitung Winrate Mobile Legend" />
-        <meta name="description" content="Hitungwr.com -- Kebingungan untuk menghitung win rate atau WR Mobile Legends? Inilah Penghitung WR ML Mobile legend" />
-        <meta name="keywords" content="penghitung wr, menghitung wr ml" />
-        <meta name="robots" content="index, follow" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        
-        
-        
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Penghitung WR ML | Eugene</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-blue: #3b82f6;
+            --dark-bg: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+        }
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent),
+                              radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.05), transparent);
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
 
+        .main-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            margin-top: 2rem;
+        }
 
+        .mlImg {
+            max-width: 180px;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+            margin-bottom: 1.5rem;
+        }
 
-    </head>
-    <body>
-        <div class="container my-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-9 col-sm-9">
-                    <div class="text-center mb-3"><img src="header.png" class="mlImg" alt="MobileLegends" /></div>
-                    <form class="mb-3">
-                        <div class="mb-3"><label class="mb-1" for="idMatch">Total match Anda</label> <input type="number" placeholder="Cth: 259" autofocus autocomplete="off" id="tMatch" class="form-control" /></div>
-                        <div class="mb-3"><label class="mb-1" for="tWr">Total Win Rate Anda</label> <input type="number" placeholder="Cth: 76.4%" step="any" autocomplete="off" id="tWr" class="form-control" /></div>
-                        <div class="mb-3"><label class="mb-1" for="wrReq">Berapa Win Rate yang anda inginkan?</label> <input type="number" placeholder="Cth: 80%" step="any" autocomplete="off" id="wrReq" class="form-control" /></div>
-                        <button class="btn btn-primary d-block w-100" type="button" id="hasil">Hasil</button>
-                    </form>
-                    <span id="resultText" class="text-center d-block"> </span>
-                    
-                    <br/>
-                     <center>
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
 
+        .form-control {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            padding: 0.8rem 1rem;
+            transition: all 0.3s;
+        }
 
-<br>
-<br>
-                        <a href="winlose.html"><img src="winorlose.png" style="width:80%"></a>
-                        <a href="losestreak.html"><img src="losestreak.png" style="width:80%"></a>
-                        </center>
-                    <div class="d-flex justify-content-center sosmed">
-                        <a class="mx-4" href="https://www.facebook.com/frederich.verkinds.7" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
-                                />
-                            </svg>
-                        </a>
-                        <a class="mx-4" href="https://www.instagram.com/frederich_eugene/" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
-                                />
-                            </svg>
-                        </a>
+        .form-control:focus {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            border: none;
+            border-radius: 12px;
+            padding: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+            background: #2563eb;
+        }
+
+        #resultText {
+            font-weight: 700;
+            color: #60a5fa;
+            padding: 1rem;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            margin-top: 1.5rem;
+            min-height: 50px;
+        }
+
+        .nav-banners img {
+            transition: transform 0.3s;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-banners img:hover {
+            transform: scale(1.03);
+        }
+
+        .sosmed a {
+            color: #64748b;
+            transition: color 0.3s;
+        }
+
+        .sosmed a:hover {
+            color: var(--primary-blue);
+        }
+
+        hr { opacity: 0.1; }
+    </style>
+</head>
+<body>
+
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-8 col-sm-11">
+                
+                <div class="main-card">
+                    <div class="text-center">
+                        <img src="header.png" class="mlImg" alt="Mobile Legends Logo" />
+                        <h2 class="h4 fw-bold mb-4">Winrate Calculator</h2>
+                    </div>
+
+                    <form id="wrForm">
+                        <div class="mb-3">
+                            <label class="form-label" for="tMatch">Total Match Saat Ini</label>
+                            <input type="number" placeholder="Contoh: 1050" autofocus autocomplete="off" id="tMatch" class="form-control" />
+                        </div>
                         
-                       
-                        <a class="mx-4" href="https://github.com/TheKingRich" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-                                />
-                            </svg>
+                        <div class="mb-3">
+                            <label class="form-label" for="tWr">Win Rate Saat Ini (%)</label>
+                            <input type="number" placeholder="Contoh: 55.2" step="any" autocomplete="off" id="tWr" class="form-control" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label" for="wrReq">Target Win Rate (%)</label>
+                            <input type="number" placeholder="Contoh: 60" step="any" autocomplete="off" id="wrReq" class="form-control" />
+                        </div>
+
+                        <button class="btn btn-primary d-block w-100 shadow-sm" type="button" id="hasil">
+                            Hitung Sekarang
+                        </button>
+                    </form>
+
+                    <div id="resultText" class="text-center d-flex align-items-center justify-content-center">
+                        Hasil akan muncul di sini...
+                    </div>
+
+                    <div class="nav-banners mt-4 text-center">
+                        <a href="winlose.html">
+                            <img src="winorlose.png" class="img-fluid w-75" alt="Win or Lose">
+                        </a>
+                        <a href="losestreak.html">
+                            <img src="losestreak.png" class="img-fluid w-75" alt="Lose Streak">
                         </a>
                     </div>
-                    <hr class="mt-5">
-                    <p class="text-center mb-0">Copyright &copy; 2022 Eugene</p>
-                </div>
+
+                    <div class="d-flex justify-content-center sosmed mt-4">
+                        <a class="mx-3" href="https://facebook.com/frederich.verkinds.7" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
+                        </a>
+                        <a class="mx-3" href="https://instagram.com/frederich_eugene/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+                        </a>
+                        <a class="mx-3" href="https://github.com/TheKingRich" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        </a>
                     </div>
+
+                    <hr class="mt-4">
+                    <p class="text-center text-muted small mb-0">© 2022-2026 Frederich Eugene</p>
                 </div>
+
             </div>
         </div>
-        
-        
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
-        <div id="histats_counter"></div>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PHDG9DXPYJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PHDG9DXPYJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PHDG9DXPYJ');
+    </script>
 
-  gtag('config', 'G-PHDG9DXPYJ');
-</script>
-        <script src="assets/js/main.js"></script>
-        
-<script type="text/javascript">
-    $(window).on('load', function() {
-        $('.modal').modal('show');
-    });
-</script>
-    </body>
+</body>
 </html>

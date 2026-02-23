@@ -1,49 +1,79 @@
-function checkLS() {
-    if (localStorage.getItem('cookies') === null) {
-        localStorage.setItem('cookies', 0);
+/**
+ * MLBB Winrate Pro - Global Logic
+ * Developed by Frederich Eugene
+ */
+
+// Inisialisasi Cookie/LocalStorage dengan cara yang lebih singkat
+const checkLS = () => {
+    if (!localStorage.getItem('cookies')) {
+        localStorage.setItem('cookies', '0');
     }
-}
+};
 
-function res() {
-    // let sum = parseInt(localStorage.getItem('cookies'))
+// Fungsi Eksekusi Utama
+const res = () => {
+    // Fungsi ini dipanggil saat tombol klik
+    // Menjalankan validasi utama dari file JS hitung masing-masing
+    if (typeof validation === "function") {
+        validation();
+    } else {
+        console.error("Fungsi validation() tidak ditemukan!");
+    }
+};
 
-    // if (sum == 0) {
-    //     window.open('https://www.effectivecpmgate.com/swqh6tcn3k?key=163b8eee7c2fbbbdae754cb90a81d9f7', '_blank');
-    // } else {
-    validation();
-    // }
-    // localStorage.setItem('cookies', 1);
-
-}
-
-function welcomeMsg() {
+// Slider Pesan Selamat Datang (Welcome Message)
+const welcomeMsg = () => {
     const welcomeMsgEl = document.querySelector("#welcomeMsg");
-    let array = 0;
+    if (!welcomeMsgEl) return;
 
-  
-    const takapediaIG = `<a href="https://www.instagram.com/frederich_eugene/" target="_blank">frederich_eugene</a>`;
-    const takapediaWA = `<a href="https://api.whatsapp.com/send?phone=62895411162666" target="_blank">62895411162666</a>`;
+    let currentIndex = 0;
+    
+    const contact = {
+        ig: '<a href="https://www.instagram.com/frederich_eugene/" target="_blank" rel="noopener" class="text-white fw-bold">frederich_eugene</a>',
+        wa: '<a href="https://api.whatsapp.com/send?phone=6285217032371" target="_blank" rel="noopener" class="text-white fw-bold">0895-4111-62666</a>'
+    };
 
-    let arrayEl = [
-        `<p class="animation mb-0 text-truncate">Follow ig frederich_eugene</p>`,
-        `<p class="animation mb-0 text-truncate">IG: ${takapediaIG} / WA: ${takapediaWA}</p>`,
-        `<p class="animation mb-0 text-truncate">MPL S12 kalian dukung siapa ges? kalo aku sih dukun ONIC ESPORT`,
-        `<p class="animation mb-0 text-truncate">Mabar yuk bang glory</p>`,
-        `<p class="animation mb-0 text-truncate">follow ml : 103422199 / Nickname Ml : Michio.</p>`
+    const messages = [
+        `Follow Instagram: ${contact.ig}`,
+        `Support/Mabar? IG: ${contact.ig} | WA: ${contact.wa}`,
+        `MPL Season 17? Tetap dukung tim jagoan kalian ges! 🏆`,
+        `Gas push rank sampai Immortal! 🚀`,
+        `ID ML: <span class="text-warning fw-bold">103422199</span> (Eujine.)`
     ];
-    setInterval(() => {
-        welcomeMsgEl.innerHTML = arrayEl[array];
 
-        array++;
-        if (array >= arrayEl.length) {
-            array = 0;
-        }
-    }, 5000);
-}
+    // Fungsi untuk mengganti teks dengan sedikit efek transisi (opacity)
+    const updateText = () => {
+        welcomeMsgEl.style.opacity = 0; // Menghilang sebentar
+        
+        setTimeout(() => {
+            welcomeMsgEl.innerHTML = `<p class="mb-0 text-truncate px-3">${messages[currentIndex]}</p>`;
+            welcomeMsgEl.style.opacity = 1; // Muncul kembali
+            
+            currentIndex = (currentIndex + 1) % messages.length;
+        }, 500);
+    };
 
+    // Jalankan pertama kali
+    updateText();
+    
+    // Interval ganti pesan setiap 5 detik
+    setInterval(updateText, 5000);
+};
+
+// Google Analytics Setup
 window.dataLayer = window.dataLayer || [];
-
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
-
 gtag('config', 'UA-206846692-3');
+
+// Jalankan fungsi saat DOM sudah siap
+document.addEventListener("DOMContentLoaded", () => {
+    checkLS();
+    welcomeMsg();
+    
+    // Event listener untuk tombol hasil jika ada
+    const btnHasil = document.querySelector("#hasil");
+    if (btnHasil) {
+        btnHasil.addEventListener("click", res);
+    }
+});

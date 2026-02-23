@@ -1,136 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Apakah kamu penasaran, berapa match yang harus kamu menangkan untuk mencapai target winrate kamu?">
-    <meta name="keywords" content="cara menghitung wr, situs penghitung wr, mobile legends, hitung wr, website penghitung wr, penghitung wr">
-    <meta property="og:description" content="Apakah kamu penasaran, berapa match yang harus kamu menangkan untuk mencapai target winrate kamu?" />
     <title>Penghitung WR Mobile Legend</title>
 
-    <meta name="google-site-verification" content="Byo--K5Z3I8yDp7aTJTQW1z9GRrNlgHxNSKG2UBqt6U" />
-
-    <!-- <script type='text/javascript' src='//pl16595215.effectivecpmgate.com/e0/25/bf/e025bf22bb956752813c0a3966661849.js'></script> -->
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary-accent: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/main.css">
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .welcomeMsg {
+            background: var(--primary-accent) !important;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            font-weight: 600;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .form-control {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            color: white !important;
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-accent);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 700;
+        }
+
+        #resultText {
+            font-weight: 600;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            min-height: 50px;
+        }
+
+        /* Sembunyikan input lsReq tapi tetap ada di DOM agar JS tidak error */
+        #lsReq { display: none; }
+        .hidden-label { display: none; }
+
+        .sosmed a { color: var(--text-muted); transition: 0.3s; }
+        .sosmed a:hover { color: var(--primary-accent); }
+    </style>
 </head>
 
 <body>
     <div class="container pb-4">
         <div class="row justify-content-center">
-            <div class="bg-dark mb-4 py-1 text-white text-center welcomeMsg py-sm-2" id="welcomeMsg">
-                <p class="animation mb-0 text-truncate">Selamat datang di website saya</p>
-
-            </div>
-            <div class="col-lg-6 col-md-9 col-sm-9">
-                <div class="text-center mb-3 d-flex flex-column align-items-center">
-                    <a href="" target="_blank">
-                        <img class="logo-img" src="header.png">
-                    </a>
+            <div class="col-12 p-0">
+                <div class="bg-dark mb-4 py-2 text-white text-center welcomeMsg" id="welcomeMsg">
+                    <p class="mb-0 text-truncate">Selamat datang di website saya</p>
                 </div>
-                <div class="card mb-3">
+            </div>
 
-                    <form class="">
+            <div class="col-lg-5 col-md-8 col-sm-10">
+                <div class="text-center">
+                    <img class="logo-img" src="header.png" style="max-width: 150px; margin-bottom: 20px;">
+                </div>
+
+                <div class="card">
+                    <form>
                         <div class="mb-3">
-                            <label class="mb-1" for="idMatch">Total match Anda</label>
+                            <label class="form-label text-muted small" for="tMatch">Total match Anda</label>
                             <input type="number" placeholder="Cth: 259" autofocus autocomplete="off" id="tMatch" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label class="mb-1" for="tWr">Total WR Anda</label>
+                            <label class="form-label text-muted small" for="tWr">Total WR Anda</label>
                             <input type="number" placeholder="Cth: 76.4" step="any" autocomplete="off" id="tWr" class="form-control">
                         </div>
-                        <div class="mb-3">
-                            <label class="mb-1" for="wrReq">Berapa lose streak yang anda inginkan?</label>
-                            <input type="number" placeholder="Cth: 10" autocomplete="off" id="lsReq" class="form-control">
-                        </div>
-                        <button class="btn btn-primary d-block w-100 mt-4" type="button" id="hasil">Hasil</button>
+
+                        <input type="number" id="lsReq" value="0">
+
+                        <button class="btn btn-primary d-block w-100 mt-4" type="button" id="hasil">Bedah Akun</button>
                     </form>
-                </div>
 
-                <span id="resultText" class="text-center d-block font-nunito">
-                </span>
-                <hr>
-                <a href="index.html" class="text-center d-block mb-2 text-warning">Kembali ke home</a>
-                <!-- <div class="mx-auto mt-5 d-flex justify-content-center">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': '6d17d537ba0fd87eb70d59788f1b3cfa',
-                            'format': 'iframe',
-                            'height': 250,
-                            'width': 300,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.highperformancedformats.com/6d17d537ba0fd87eb70d59788f1b3cfa/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-                <div class="mx-auto mt-5 d-flex justify-content-center">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': '6d17d537ba0fd87eb70d59788f1b3cfa',
-                            'format': 'iframe',
-                            'height': 250,
-                            'width': 300,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.highperformancedformats.com/6d17d537ba0fd87eb70d59788f1b3cfa/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-                <div class="mx-auto mt-5 d-flex justify-content-center">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': '6d17d537ba0fd87eb70d59788f1b3cfa',
-                            'format': 'iframe',
-                            'height': 250,
-                            'width': 300,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.highperformancedformats.com/6d17d537ba0fd87eb70d59788f1b3cfa/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-                <div class="mx-auto mt-5 d-flex justify-content-center">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': '6d17d537ba0fd87eb70d59788f1b3cfa',
-                            'format': 'iframe',
-                            'height': 250,
-                            'width': 300,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.highperformancedformats.com/6d17d537ba0fd87eb70d59788f1b3cfa/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div> -->
+                    <div id="resultText" class="text-center">
+                        <small class="text-muted">Hasil bedah winrate akan muncul di sini</small>
+                    </div>
+                    
+                    <hr style="opacity: 0.1; margin: 25px 0;">
+                    <a href="index.html" class="text-center d-block mb-4 text-warning" style="text-decoration: none;">← Kembali ke Home</a>
 
-                <div class="d-flex justify-content-center sosmed">
-                    <a class="mx-4" href="https://www.facebook.com/frederich.verkinds.7" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                  </svg>
-                    </a>
-                    <a class="mx-4" href="https://www.tiktok.com/@richeugene24" target="_blank">
-                        <svg height="17" viewBox="-32 0 512 512" width="17" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="m432.734375 112.464844c-53.742187 0-97.464844-43.722656-97.464844-97.464844 0-8.285156-6.714843-15-15-15h-80.335937c-8.28125 0-15 6.714844-15 15v329.367188c0 31.59375-25.707032 57.296874-57.300782 57.296874s-57.296874-25.703124-57.296874-57.296874c0-31.597657 25.703124-57.300782 57.296874-57.300782 8.285157 0 15-6.714844 15-15v-80.335937c0-8.28125-6.714843-15-15-15-92.433593 0-167.632812 75.203125-167.632812 167.636719 0 92.433593 75.199219 167.632812 167.632812 167.632812 92.433594 0 167.636719-75.199219 167.636719-167.632812v-145.792969c29.851563 15.917969 63.074219 24.226562 97.464844 24.226562 8.285156 0 15-6.714843 15-15v-80.335937c0-8.28125-6.714844-15-15-15zm0 0"/></svg>
-                    </a>
-                    <a class="mx-4" href="https://github.com/TheKingRich" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                          </svg>
-                    </a>
+                    <div class="d-flex justify-content-center sosmed">
+                        <a class="mx-3" href="https://www.facebook.com/frederich.verkinds.7" target="_blank text-decoration-none">FB</a>
+                        <a class="mx-3" href="https://www.tiktok.com/@richeugene24" target="_blank text-decoration-none">TK</a>
+                        <a class="mx-3" href="https://github.com/TheKingRich" target="_blank text-decoration-none">GH</a>
+                    </div>
                 </div>
-                <hr class="mt-5 ">
-                <p class="text-center mb-0 ">Copyright &copy; 2022 Eugene</p>
+                <p class="text-center text-muted small mt-4">Copyright &copy; 2022 Eugene</p>
             </div>
         </div>
     </div>
 
-
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-206846692-3 "></script>
-
-    <script src="assets/js/global.js "></script>
-    <script src="assets/js/losestreak.js "></script>
+    <script src="assets/js/global.js"></script>
+    <script src="assets/js/losestreak.js"></script>
 </body>
-
 </html>

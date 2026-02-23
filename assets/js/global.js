@@ -30,7 +30,7 @@ const welcomeMsg = () => {
     
     const contact = {
         ig: '<a href="https://www.instagram.com/frederich_eugene/" target="_blank" rel="noopener" class="text-white fw-bold">frederich_eugene</a>',
-        wa: '<a href="https://api.whatsapp.com/send?phone=6285217032371" target="_blank" rel="noopener" class="text-white fw-bold">0895-4111-62666</a>'
+        wa: '<a href="https://api.whatsapp.com/send?phone=6285217032371" target="_blank" rel="noopener" class="text-white fw-bold">0852-1703-2371</a>'
     };
 
     const messages = [
@@ -77,3 +77,4 @@ document.addEventListener("DOMContentLoaded", () => {
         btnHasil.addEventListener("click", res);
     }
 });
+
